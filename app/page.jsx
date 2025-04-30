@@ -45,7 +45,7 @@ export default async function Home() {
               using asChild makes the <Button> render as a<Link> instead of a <button> while keeping all the styles and behavior of the button. */}
             {/*Also while adding asChild the icon and viewAll will be properly aligned */}
             <Button variant='ghost' className='flex items-center' asChild>
-              <Link href='/cars'>
+              <Link href='/car'>
                 View All <ChevronRight className='ml-1 h-4 w-4' />
               </Link>
             </Button>

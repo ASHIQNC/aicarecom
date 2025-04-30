@@ -34,3 +34,11 @@ Lightweight & Simple – It’s easy to integrate into any React project.
 
 6. After that go to lib folder and create prisma instance
    ->if we want communicate with the data base we need to create a prisma instance.tthat is call to the database
+
+## vercel deploymenr
+
+1. login to vercel using github
+2. import the project that we need to deploy
+3. on the install command section type
+   " npm install --legacy-peer-deps"
+4. Add all the environment variable in the environmental variable section

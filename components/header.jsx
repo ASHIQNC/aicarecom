@@ -38,7 +38,10 @@ const Header = async ({ isAdminPage = false }) => {
           {isAdminPage ? (
             <>
               <Link href='/'>
-                <Button variant='outline' className='flex items-center gap-2'>
+                <Button
+                  variant='outline'
+                  className='flex items-center gap-2 cursor-pointer'
+                >
                   {/* this icon comes along with shadcn ui */}
                   <ArrowLeft size={18} />
                   <span className='hidden md:inline'>Back To App</span>
@@ -50,7 +53,7 @@ const Header = async ({ isAdminPage = false }) => {
               {/* if the user signed in show what is inside of this */}
               <SignedIn>
                 <Link href='/saved-cars'>
-                  <Button>
+                  <Button className='cursor-pointer'>
                     {/* this icon comes along with shadcn ui */}
                     <Heart size={18} />
                     <span className='hidden md:inline'>Saved Cars</span>
@@ -58,7 +61,7 @@ const Header = async ({ isAdminPage = false }) => {
                 </Link>
                 {!isAdmin ? (
                   <Link href='/reservations'>
-                    <Button variant='outline'>
+                    <Button variant='outline' className='cursor-pointer'>
                       {/* this icon comes along with shadcn ui */}
                       <CarFront size={18} />
                       <span className='hidden md:inline'>My Reservation</span>
@@ -66,7 +69,7 @@ const Header = async ({ isAdminPage = false }) => {
                   </Link>
                 ) : (
                   <Link href='/admin'>
-                    <Button variant='outline'>
+                    <Button variant='outline' className='cursor-pointer'>
                       {/* this icon comes along with shadcn ui */}
                       <Layout size={18} />
                       <span className='hidden md:inline'>Admin Portal</span>
