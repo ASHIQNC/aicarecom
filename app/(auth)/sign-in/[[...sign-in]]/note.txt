@@ -1,0 +1,16 @@
+this is optional route. clerk need this inorder to use cusstom route. 
+
+Optional Catch-all Segments
+Catch-all Segments can be made optional by including the parameter in double square brackets: [[...folderName]].
+
+For example, app/shop/[[...slug]]/page.js will also match /shop, in addition to /shop/clothes, /shop/clothes/tops, /shop/clothes/tops/t-shirts.
+
+The difference between catch-all and optional catch-all segments is that with optional, the route without the parameter is also matched (/shop in the example above).
+
+Route	Example URL	params
+app/shop/[[...slug]]/page.js	/shop	{ slug: undefined }
+app/shop/[[...slug]]/page.js	/shop/a	{ slug: ['a'] }
+app/shop/[[...slug]]/page.js	/shop/a/b	{ slug: ['a', 'b'] }
+app/shop/[[...slug]]/page.js	/shop/a/b/c	{ slug: ['a', 'b', 'c'] }
+
+check on the doc  " https://nextjs.org/docs/app/building-your-application/routing/dynamic-routes#optional-catch-all-segments "
