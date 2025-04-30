@@ -201,29 +201,30 @@ export async function getCars({
         // select all the carId of the perticular user over the wishlisted id
         select: { carId: true },
       });
+
       // A "Set" is a special JavaScript object that only stores unique values.
       //the set will remove any duplicate id's(ie )
       wishlisted = new Set(savedCars.map((saved) => saved.carId));
-
-      // Serialize and check wishlist status
-      //we are serialising the data and check whether the wishlisted has the car.id or not
-      //if it is yes we will get the data along with the wishlisted is true
-      const serializedCars = cars.map((car) =>
-        serializeCarData(car, wishlisted.has(car.id))
-      );
-      console.log('serialised', serializedCars);
-      return {
-        success: true,
-        data: serializedCars,
-        pagination: {
-          total: totalCars,
-          page,
-          limit,
-          //how many pages are there
-          pages: Math.ceil(totalCars / limit),
-        },
-      };
     }
+    // Serialize and check wishlist status
+    //we are serialising the data and check whether the wishlisted has the car.id or not
+    //if it is yes we will get the data along with the wishlisted is true
+    const serializedCars = cars.map((car) =>
+      serializeCarData(car, wishlisted.has(car.id))
+    );
+    console.log('serialised', serializedCars);
+
+    return {
+      success: true,
+      data: serializedCars,
+      pagination: {
+        total: totalCars,
+        page,
+        limit,
+        //how many pages are there
+        pages: Math.ceil(totalCars / limit),
+      },
+    };
   } catch (error) {
     throw new Error('Error fetching the cars:' + error.message);
   }

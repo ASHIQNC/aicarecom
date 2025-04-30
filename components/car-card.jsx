@@ -120,9 +120,9 @@ const CarCard = ({ car }) => {
           </Badge>
         </div>
 
-        <div className='flex justify-between cursor-pointer'>
+        <div className='flex justify-between '>
           <Button
-            className='flex-1'
+            className='flex-1 cursor-pointer'
             onClick={() => {
               router.push(`/car/${car.id}`);
             }}
