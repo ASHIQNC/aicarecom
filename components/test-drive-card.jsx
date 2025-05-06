@@ -163,7 +163,7 @@ const TestDriveCard = ({
                 asChild
               >
                 <Link
-                  href={`/cars/${booking.carId}`}
+                  href={`/car/${booking.carId}`}
                   className='flex items-center justify-center'
                 >
                   View Car
