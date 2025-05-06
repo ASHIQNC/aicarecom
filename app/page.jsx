@@ -70,7 +70,7 @@ export default async function Home() {
               using asChild makes the <Button> render as a<Link> instead of a <button> while keeping all the styles and behavior of the button. */}
             {/*Also while adding asChild the icon and viewAll will be properly aligned */}
             <Button variant='ghost' className='flex items-center' asChild>
-              <Link href='/cars'>
+              <Link href='/car'>
                 View All <ChevronRight className='ml-1 h-4 w-4' />
               </Link>
             </Button>
@@ -81,7 +81,7 @@ export default async function Home() {
               return (
                 <Link
                   key={make.name}
-                  href={`/cars?make=${make.name}`}
+                  href={`/car?make=${make.name}`}
                   className='bg-white rounded-lg shadow p-4 hover:shadow-md text-center transition cursor-pointer'
                 >
                   <div className='h-16 w-auto mx-auto mb-2 relative'>
@@ -146,7 +146,7 @@ export default async function Home() {
           <div className='flex justify-between items-center mb-8'>
             <h2 className='text-2xl font-bold'>Browse by Body Type</h2>
             <Button variant='ghost' className='flex items-center' asChild>
-              <Link href='/cars'>
+              <Link href='/car'>
                 View All <ChevronRight className='ml-1 h-4 w-4' />
               </Link>
             </Button>
@@ -155,7 +155,7 @@ export default async function Home() {
             {bodyTypes.map((type) => (
               <Link
                 key={type.name}
-                href={`/cars?bodyType=${type.name}`}
+                href={`/car?bodyType=${type.name}`}
                 className='relative group cursor-pointer'
               >
                 <div className='overflow-hidden rounded-lg flex justify-end h-28 mb-4 relative'>
@@ -211,7 +211,7 @@ export default async function Home() {
 
           <div className='flex flex-col sm:flex-row justify-center gap-4'>
             <Button size='lg' variant='secondary' asChild>
-              <Link href='/cars'>View All Cars</Link>
+              <Link href='/car'>View All Cars</Link>
             </Button>
 
             {/* only display the button when the user is signed out */}
