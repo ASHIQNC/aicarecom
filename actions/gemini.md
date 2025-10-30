@@ -7,7 +7,7 @@ first we need the logic for scaning the image with ai for that we need geminie a
 1. create a account in gemini
 2. login to the account
 3. click on the getapikey section
-4. create api key and copy that api key, and paste in the env file
+4. create api key and copy that api key, and paste in the ".env file"
 5. installl this package in your project
    npm i @google/generative-ai --legacy-peer-deps
 6. go to the action file and create cars.js,inside the write the api for gemini and also write the api for addcars

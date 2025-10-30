@@ -3,7 +3,7 @@ const nextConfig = {
   experimental: {
     serverComponentsHmrCache: false,
     serverActions: {
-      bodySizeLimit: '4mb',
+      bodySizeLimit: '10mb',
     },
   },
 
@@ -11,7 +11,7 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'rbapsxiqyeuwuqvqdipc.supabase.co',
+        hostname: 'evikqsedllrvtweblvii.supabase.co',
       },
     ],
   },

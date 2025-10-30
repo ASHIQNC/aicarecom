@@ -4,6 +4,7 @@
 // Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
+//--------------------start-------------------------
 generator client {
   provider = "prisma-client-js"
 }
@@ -14,7 +15,7 @@ datasource db {
   directUrl=env("DIRECT_URL")
 }
 
-
+//-----------end---------------
 
 model User {
   id            String             @id @default(uuid()) //randomly create id
@@ -26,7 +27,7 @@ model User {
   createdAt     DateTime           @default(now())
   updatedAt     DateTime           @updatedAt
   role          UserRole           @default(USER)
-  savedCars     UserSavedCar[]                  //user is connected to both usersavedcar table and testdrivebooking table
+  savedCars     UserSavedCar[]           //user is connected to both usersavedcar table and testdrivebooking table
   testDrives    TestDriveBooking[]
 }
 
@@ -129,10 +130,11 @@ enum DayOfWeek {
 }
 
 
-
+  //inside the user tablewe have to get a relation with this perticular userid to the reference id inside the user table.
 model UserSavedCar {
   id        String   @id @default(uuid())
   userId    String
+
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   carId     String
   car       Car      @relation(fields: [carId], references: [id], onDelete: Cascade)

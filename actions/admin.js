@@ -1,3 +1,5 @@
+//this action file is the place were our api calls are happening
+
 'use server';
 
 import { serializeCarData } from '@/lib/helper';
@@ -11,7 +13,7 @@ export async function getAdmin() {
 
   if (!userId) throw new Error('Unauthorized');
 
-  //check the user is inside the database ornot
+  //check the user is exist inside the database ornot
   const user = await db.user.findUnique({
     where: {
       clerkUserId: userId,

@@ -7,10 +7,12 @@ export const metadata = {
   title: 'Add New Car | Vehiql Admin',
   description: 'Add New Car to the marketplace',
 };
+
+//adding the car in database
 const AddCarPage = () => {
   return (
-    <div className='p-6'>
-      <h1 className='text-2xl font-bold mb-6'>Add New Car</h1>
+    <div className="p-6">
+      <h1 className="text-2xl font-bold mb-6">Add New Car</h1>
       {/* Add car form */}
       <AddCarForm />
 

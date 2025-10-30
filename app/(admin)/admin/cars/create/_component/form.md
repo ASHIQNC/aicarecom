@@ -20,7 +20,7 @@ bucket
 
       example:
 
-## New policies for uploading image
+## New policies need to add in supase for uploading image
 
         this policies is for allowing user to upload the images
         policies ->createpolicies ->click on for full customisation -> selct the allowed operation that we needed

@@ -12,7 +12,9 @@ import { useAuth } from '@clerk/nextjs';
 import { toast } from 'sonner';
 
 const CarCard = ({ car }) => {
-  const [saved, setSaved] = useState(car.wishlisted);
+  const [saved, setSaved] = useState(car?.wishlisted);
+  const [buttonLoading, setButtonLoading] = useState(false);
+
   const router = useRouter();
   const { isSignedIn } = useAuth();
   // add to wishlist or saved cars
@@ -61,20 +63,20 @@ const CarCard = ({ car }) => {
     }
   };
   return (
-    <Card className='overflow-hidden hover:shadow-lg transition group py-0'>
-      <div className='relative h-48'>
+    <Card className="overflow-hidden hover:shadow-lg transition group py-0">
+      <div className="relative h-48">
         {car.images && car.images.length > 0 ? (
-          <div className='relative w-full h-full'>
+          <div className="relative w-full h-full">
             <Image
               src={car.images[0]}
               alt={`${car.make} ${car.model}`}
               fill
-              className='object-cover group-hover:scale-105 transition duration-300'
+              className="object-cover group-hover:scale-105 transition duration-300"
             />
           </div>
         ) : (
-          <div className='w-full h-full bg-gray-200 flex items-center justify-center'>
-            <CarIcon className='h-12 w-12 text-gray-400' />
+          <div className="w-full h-full bg-gray-200 flex items-center justify-center">
+            <CarIcon className="h-12 w-12 text-gray-400" />
           </div>
         )}
         <Button
@@ -83,51 +85,65 @@ const CarCard = ({ car }) => {
               ? 'text-red-500 hover:text-red-600'
               : 'text-gray-600 hover:text-gray-900'
           }`}
-          variant='ghost'
-          size='icon'
+          variant="ghost"
+          size="icon"
           onClick={handleToggleSave}
         >
           {isToggling ? (
-            <Loader2 className='h-4 w-4 animate-spin' />
+            <Loader2 className="h-4 w-4 animate-spin" />
           ) : (
             <Heart size={20} className={saved ? 'fill-current' : ''} />
           )}
         </Button>
       </div>
-      <CardContent className='p-4'>
+      <CardContent className="p-4">
         <h3>
           {car.make} {car.model}
         </h3>
         <span>${car.price}</span>
 
-        <div className='text-gray-600 mb-2 flex items-center'>
+        <div className="text-gray-600 mb-2 flex items-center">
           <span>{car.year}</span>
-          <span className='mx-2'>•</span>
+          <span className="mx-2">•</span>
           <span>{car.transmission}</span>
-          <span className='mx-2'>•</span>
+          <span className="mx-2">•</span>
           <span>{car.fuelType}</span>
         </div>
 
-        <div className='flex flex-wrap gap-1 mb-4'>
-          <Badge variant='outline' className='bg-gray-50'>
+        <div className="flex flex-wrap gap-1 mb-4">
+          <Badge variant="outline" className="bg-gray-50">
             {car.bodyType}
           </Badge>
-          <Badge variant='outline' className='bg-gray-50'>
+          <Badge variant="outline" className="bg-gray-50">
             {car?.mileage} miles
           </Badge>
-          <Badge variant='outline' className='bg-gray-50'>
+          <Badge variant="outline" className="bg-gray-50">
             {car.color}
           </Badge>
         </div>
 
-        <div className='flex justify-between '>
-          <Button
-            className='flex-1 cursor-pointer'
+        <div className="flex justify-between ">
+          {/* <Button
+            className="flex-1 cursor-pointer"
             onClick={() => {
               router.push(`/car/${car.id}`);
             }}
           >
             View Car
+          </Button> */}
+          <Button
+            className="flex-1 cursor-pointer"
+            onClick={() => {
+              setButtonLoading(true);
+              router.push(`/car/${car.id}`);
+            }}
+            disabled={buttonLoading}
+          >
+            {buttonLoading ? (
+              <Loader2 className="h-4 w-4 animate-spin" />
+            ) : (
+              'View Car'
+            )}
           </Button>
         </div>
       </CardContent>

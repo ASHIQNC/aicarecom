@@ -41,6 +41,8 @@ const HomeSearch = () => {
       // its inbuild function
 
       const reader = new FileReader();
+
+      //when the image is loaded
       reader.onloadend = () => {
         setimagePreview(reader.result);
         setIsUploading(false);
@@ -113,47 +115,48 @@ const HomeSearch = () => {
   return (
     <div>
       <form onSubmit={handleTextSubmit}>
-        <div className='relative flex items-center'>
+        <div className="relative flex items-center">
           <Input
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            type='text'
-            placeholder='Enter make,model, or use our AI Image Search...'
-            className='pl-10 pr-12 py-6 w-full rounded-full border-gray-300 bg-white/95 backdrop-blur-sm'
+            type="text"
+            placeholder="Enter make,model, or use our AI Image Search..."
+            className="pl-10 pr-12 py-6 w-full rounded-full border-gray-300 bg-white/95 backdrop-blur-sm"
           />
-          <div className='absolute right-[100px]'>
+          <div className="absolute right-[100px]">
             <Camera
               size={35}
               style={{
                 background: isImageStateActive ? 'black' : '',
                 color: isImageStateActive ? 'white' : '',
               }}
-              className='cursor-pointer rounded-xl p-1.5'
+              className="cursor-pointer rounded-xl p-1.5"
               onClick={() => setIsImageStateActive(!isImageStateActive)}
             />
           </div>
-          <Button type='submit' className='absolute right-2 rounded-full '>
+          <Button type="submit" className="absolute right-2 rounded-full ">
             Search
           </Button>
         </div>
       </form>
       {/* a section to drop image will apear here if we click on the camera icon */}
       {isImageStateActive && (
-        <div className='mt-4'>
+        <div className="mt-4">
           <form onSubmit={handleImageSearch}>
-            <div className='border-2 border-dashed text-center border-gray-300 rounded-3xl p-6'>
+            <div className="border-2 border-dashed text-center border-gray-300 rounded-3xl p-6">
+              {/* showing the uploaded image */}
               {imagePreview ? (
-                <div className='flex justify-center items-center flex-col'>
+                <div className="flex justify-center items-center flex-col">
                   <img
                     src={imagePreview}
-                    alt='car preview '
-                    className='h-40 object-contain mb-4'
+                    alt="car preview "
+                    className="h-40 object-contain mb-4"
                   ></img>
 
                   {/* button for removing the image */}
                   <Button
-                    className='cursor-pointer mt-2'
-                    variant='outline'
+                    className="cursor-pointer mt-2"
+                    variant="outline"
                     onClick={() => {
                       setsearchImage(null);
                       setimagePreview('');
@@ -165,19 +168,20 @@ const HomeSearch = () => {
                 </div>
               ) : (
                 // cheack the documentation of react dragdrop
-                <div {...getRootProps()} className='cursor-pointer'>
+                //this is from react dropzone
+                <div {...getRootProps()} className="cursor-pointer">
                   <input {...getInputProps()} />
-                  <div className='flex items-center flex-col'>
-                    <Upload className='h-12 w-12 text-gray-400 mb-2' />
-                    <p className='mb-2 text-gray-500'>
+                  <div className="flex items-center flex-col">
+                    <Upload className="h-12 w-12 text-gray-400 mb-2" />
+                    <p className="mb-2 text-gray-500">
                       {isDragActive && !isDragReject
                         ? 'Leave the file here to upload'
                         : 'Drag &drop a car image or click to select'}
                     </p>
                     {isDragReject && (
-                      <p className='text-red-500 mb-2'>Invalid image type</p>
+                      <p className="text-red-500 mb-2">Invalid image type</p>
                     )}
-                    <p className='text-gray-400 text-sm'>
+                    <p className="text-gray-400 text-sm">
                       Supports: JPG PNG (max 5Mb)
                     </p>
                   </div>
@@ -189,15 +193,15 @@ const HomeSearch = () => {
             {/* image preview aanel show the button */}
             {imagePreview && (
               <Button
-                className='w-full mt-2'
-                type='submit'
+                className="w-full mt-2"
+                type="submit"
                 disabled={isUploading || isProcessing}
               >
                 {isUploading
                   ? 'Uploading...'
                   : isProcessing
-                  ? 'Analyzing Image...'
-                  : 'search with this image'}
+                    ? 'Analyzing Image...'
+                    : 'search with this image'}
               </Button>
             )}
           </form>

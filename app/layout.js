@@ -1,3 +1,6 @@
+//this filw basically define the layout of the app
+//children is the okace where page.jsx will render
+
 import { Geist, Geist_Mono, Inter } from 'next/font/google';
 import './globals.css';
 import Header from '@/components/header';
@@ -14,17 +17,17 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <ClerkProvider>
-      <html lang='en'>
+      <html lang="en">
         <body
           // this will apply whole font to project
           className={`${inter.className}`}
         >
           <Header />
-          <main className='min-h-screen'>{children}</main>
+          <main className="min-h-screen">{children}</main>
           <Toaster richColors />
-          <footer className='bg-blue-50 py-12'>
+          <footer className="bg-blue-50 py-12">
             {/*this is good for mobile version  */}
-            <div className='container mx-auto px-4 text-center text-gray-600'>
+            <div className="container mx-auto px-4 text-center text-gray-600">
               <p>All rights to ASR technologies</p>
             </div>
           </footer>

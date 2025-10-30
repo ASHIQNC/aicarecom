@@ -83,7 +83,9 @@ export async function processImageSearch(file) {
     const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
     // we will need the model for processing our image
     //we will be using gemini 1.5 flash
-    const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
+    const model = genAI.getGenerativeModel({
+      model: 'gemini-2.5-flash',
+    });
 
     // we have the image file we need to convert this to base64 image
     const base64Image = await fileToBase64(file);

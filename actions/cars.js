@@ -16,7 +16,7 @@ async function fileToBase64(file) {
   return buffer.toString('base64');
 }
 //first we need the logic for scaning the image with ai for that we need geminie api
-
+//file is the image that we are passing
 export async function processCarImageWithAI(file) {
   // inside this we will write the logic for processing our image
 
@@ -28,21 +28,25 @@ export async function processCarImageWithAI(file) {
     //this package will be taking api key
     const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
     // we will need the model for processing our image
-    //we will be using gemini 1.5 flash
-    const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
+    //we will be using gemini 1.5 flash()
+    const model = genAI.getGenerativeModel({
+      model: 'gemini-2.5-flash',
+    });
 
     // we have the image file we need to convert this to base64 image
     const base64Image = await fileToBase64(file);
 
+    //we will be supplying the image to gemini api that is what we are doing here
+    //checkgemini api doc
     const imagePart = {
       inlineData: {
         data: base64Image,
-        // mention the image tyoe
+        // mention the image type
         mimeType: file.type,
       },
     };
 
-    // after taking the image qw need to write "PROMPT" and tell what the api need to do
+    // after taking the image we need to write "PROMPT" and tell what the api need to do
     //expectialy we training the ai and tell to analyse the image and extract the following information
     // after analysing the image format all the information and form an object
     const prompt = `
@@ -81,6 +85,7 @@ export async function processCarImageWithAI(file) {
 
     // this response need to be convert to text format
     const response = await result.response;
+    //response will be in not cleaned for format so we need to convert to text
     const text = response.text();
 
     //this text contain backticks ,dots etc
@@ -168,7 +173,7 @@ export async function addCar({ carData, images }) {
     const folderPath = `cars/${carId}`;
 
     //we need to initailise the supabase (bucket)client for generating the image
-    // go to supabase store ->connect->appframework-> pafe.tsx->copy the things that we needed
+    // go to supabase store ->connect->appframework-> page.tsx->copy the things that we needed
     const cookieStore = await cookies();
     //we ahave writted the createClient in the lib folder
 
@@ -207,8 +212,9 @@ export async function addCar({ carData, images }) {
       const filePath = `${folderPath}/${fileName}`;
 
       //finally we need to generate the image
-      //car-images-bucket name
+      //car-images=(bucket name)
       const { data, error } = await supabase.storage
+
         .from('car-images')
         .upload(filePath, imageBuffer, {
           //content type
@@ -277,6 +283,7 @@ export async function addCar({ carData, images }) {
       };
     }
   } catch (error) {
+    console.log('error', error);
     throw new Error(`Error adding car: ${error.message}`);
   }
 }

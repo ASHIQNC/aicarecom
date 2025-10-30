@@ -37,7 +37,7 @@ const aj = arcjet({
 // check whether user is logged in or not
 const clerk = clerkMiddleware(async (auth, req) => {
   const { userId } = await auth();
-  //    if the user is not logged in also if the is in protected route  redirect to sign in page
+  //    if the user is not logged in also if the user is in protected route  redirect to sign in page
   if (!userId && isProtectedRoute(req)) {
     const { redirectToSignIn } = await auth();
     return redirectToSignIn();
@@ -46,6 +46,7 @@ const clerk = clerkMiddleware(async (auth, req) => {
   return NextResponse.next();
 });
 
+//createMiddleware is used to merge both the middleware.
 export default createMiddleware(aj, clerk);
 
 export const config = {
